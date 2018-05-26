@@ -1,0 +1,29 @@
+version: '3.5'
+
+services:
+  api:
+    build: ./crossblog
+    ports:
+      - 5000:80
+    depends_on:
+      - db
+    networks:
+      - crossblog-network
+
+  db:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 1q2w3e4r
+    volumes:
+      - crossblog-data:/var/lib/mysql
+    networks:
+      - crossblog-network
+
+volumes:
+  crossblog-data:
+
+networks:
+  crossblog-network:
+    driver: bridge

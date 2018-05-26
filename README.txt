@@ -1,7 +1,4 @@
-# Crossover_Crossblog
-Test for position: C# (.NET) Chief Software Architect - Crossblog
-
-Challenge Statement
+﻿Challenge Statement
 
 Cross-blogs is a backend blogging application written by a startup company called WritingForAll. It allows users to create / update / delete their articles, accepting comments for each article.
 
