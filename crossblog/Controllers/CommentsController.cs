@@ -34,7 +34,9 @@ namespace crossblog.Controllers
                 return NotFound();
             }
 
-            var comments = await _commentRepository.Query().ToListAsync();
+            // Bugfix Juliano
+            var comments = await _commentRepository.Query()
+                .Where(x => x.ArticleId == article.Id).ToListAsync();
 
             var result = new CommentListModel
             {
