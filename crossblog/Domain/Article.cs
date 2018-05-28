@@ -6,10 +6,11 @@ namespace crossblog.Domain
     public class Article : BaseEntity
     {
         [Required]
-        [StringLength(255)]
+        [StringLength(120)]
         public string Title { get; set; }
 
         [Required]
+        [StringLength(32000)]
         public string Content { get; set; }
 
         public DateTime Date { get; set; }

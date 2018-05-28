@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -24,9 +25,11 @@ namespace crossblog.Controllers
 
         // GET articles/search
         [HttpGet("search")]
-        public async Task<IActionResult> Search([FromQuery]string title)
+        public IActionResult Search([FromQuery]string title)
         {
-            var articles = await _articleRepository.Query().Where(a => a.Title.Contains(title)).Take(20).ToListAsync();
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            var articles = _articleRepository.Query().Where(a => a.Title.Contains(title)).Take(20);
 
             var result = new ArticleListModel
             {
@@ -39,6 +42,7 @@ namespace crossblog.Controllers
                     Published = a.Published
                 })
             };
+            stopwatch.Stop();
 
             return Ok(result);
         }

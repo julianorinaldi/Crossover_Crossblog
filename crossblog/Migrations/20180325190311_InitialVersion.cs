@@ -19,7 +19,7 @@ namespace crossblog.Migrations
                     Created_At = table.Column<DateTime>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
                     Published = table.Column<bool>(nullable: false),
-                    Title = table.Column<string>(maxLength: 255, nullable: false),
+                    Title = table.Column<string>(maxLength: 120, nullable: false),
                     Updated_At = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -52,6 +52,11 @@ namespace crossblog.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Articles_Title",
+                table: "Articles",
+                column: "Title");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_ArticleId",
